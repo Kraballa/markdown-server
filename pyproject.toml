@@ -24,4 +24,4 @@ dependencies = [
 ]
 
 [project.scripts]
-markdown-server = "markdown_server.cli:main"
+markdown-server = "markdown_server.server:main"

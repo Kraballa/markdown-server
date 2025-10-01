@@ -7,7 +7,7 @@ from markdown_it.renderer import RendererProtocol
 from markdown_it.utils import EnvType, OptionsDict
 from markdown_it.token import Token
 
-from findend import find_end
+from .findend import find_end
 
 def superscript_plugin(md: MarkdownIt) -> None:
     """

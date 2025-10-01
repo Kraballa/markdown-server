@@ -9,7 +9,7 @@ from markdown_it.token import Token
 
 import latex2mathml.converter as texmath
 
-from findend import find_end
+from .findend import find_end
 
 def texmathml_plugin(md: MarkdownIt) -> None:
     """

@@ -1,0 +1,86 @@
+:root {
+    background-color: light-dark(white, #101014);
+    color: light-dark(black, rgb(206, 206, 206));
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
+}
+
+div.content {
+    margin: auto;
+    max-width: 600px;
+    padding: 0 5px;
+}
+
+/* force max-width on images */
+img {
+    max-width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    align-self: center;
+}
+
+th,
+td {
+    border: 1px solid rgb(161, 161, 161);
+}
+
+tr:nth-child(even),
+thead {
+    background-color: #82828224;
+}
+
+tr,
+td,
+th {
+    padding: 4px 8px 4px 4px;
+}
+
+pre code {
+    padding: 6px;
+    display: inline-block;
+}
+
+code {
+    background-color: #9f9f9f30;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+ul,
+ol {
+    padding-left: 20px;
+    /* margin: 0.3em 0 0.3em 0; */
+}
+
+/* you can't style disabled checkboxes so we have to do this hack */
+input[type=checkbox] {
+    pointer-events: none;
+}
+
+input[type=checkbox].semi {
+    accent-color: gray; /* firefox */
+}
+
+p {
+    text-align: justify;
+}
+
+.header {
+    padding: 4px 0 5px;
+    border-bottom: 1px solid;
+    border-width: 2px;
+    font-family: monospace;
+    background-color: #7676764e;
+    line-height: 1.5em;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
+}
