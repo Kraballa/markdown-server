@@ -69,8 +69,6 @@ def getAllMarkdownFiles(path="."):
         for file in files:
             if file.endswith('.md'):
                 markdown_files.append(os.path.join(root, file))
-        for dir in dirs:
-            print(dir)
     return markdown_files
 
 def main():

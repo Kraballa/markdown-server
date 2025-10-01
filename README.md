@@ -11,14 +11,23 @@ pip install markdown-server
 ## Usage
 
 ```bash
-markdown-server --directory /path/to/markdown/files
+cd <your dir>
+markdown-server
 ```
 
 ## Features
+- Starts a python flask server in the current directory that renders and serves markdown files
+- Simple web interface for browsing all markdown files at path `/`
+- Supports images and cross-file links
+- Is opinionated with a base jinja template for the flask server and styling
+- Support for common Markdown extensions plus the following custom ones:
 
-- Renders Markdown files as HTML
-- Simple web interface for browsing files
-- Support for common Markdown extensions
+| idea             | HTML result              | markdown syntax             |
+| :--------------- | :----------------------- | :-------------------------- |
+| superscript      | `<sup>` tag              | `^{superscripted text}`     |
+| subscript        | `<sub>` tag              | `_{subscripted text}`       |
+| ruby annotation  | `<ruby>` tag and friends | `{some text \| annotation}` |
+| amsmath notation | `<math>` (google MathML) | `$ *amsmath notation* $`    |
 
 ## Development
 
