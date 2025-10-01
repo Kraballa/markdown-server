@@ -19,6 +19,8 @@ classifiers = [
 dependencies = [
     "markdown-it-py",
     "flask",
+    "markupsafe",
+    "latex2mathml"
 ]
 
 [project.scripts]
