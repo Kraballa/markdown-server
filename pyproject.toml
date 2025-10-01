@@ -13,7 +13,6 @@ authors = [
 requires-python = ">=3.6"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 dependencies = [
@@ -22,6 +21,12 @@ dependencies = [
     "markupsafe",
     "latex2mathml"
 ]
+license = "MIT"
+license-files = ["LICENSE*"]
+
+[project.urls]
+Homepage = "https://github.com/Kraballa/markdown-server"
+Issues = "https://http.cat/status/404"
 
 [project.scripts]
 markdown-server = "markdown_server.server:main"

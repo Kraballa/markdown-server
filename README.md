@@ -29,10 +29,13 @@ markdown-server
 | ruby annotation  | `<ruby>` tag and friends | `{some text \| annotation}` |
 | amsmath notation | `<math>` (google MathML) | `$ *amsmath notation* $`    |
 
+## Limitations
+Since URL's can't contain spaces we replace them with `+`. If your path contains the symbol `+` it won't work. So don't do that.
+
 ## Development
 
 ### Setup
 
 1. Clone this repository
 2. Install dependencies: `pip install -e .`
-3. Run the development server: `python -m markdown_server.cli`
+3. Run the development server: `markdown-server`

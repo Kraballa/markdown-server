@@ -38,10 +38,11 @@ def root():
     paths = getAllMarkdownFiles()
     htmlChunks = ["<ul>"]
     for path in paths:
-        htmlChunks.append(f"<li><a href={path}>{path}</a></li>")
+        truncated = path[2:].replace("+", " ")
+        htmlChunks.append(f"<li><a href={path}>{truncated}</a></li>")
     htmlChunks.append("</ul>")
     content = Markup(''.join(htmlChunks))
-    return render_template("base.html", content=content, title="Index")
+    return render_template("base.html", content=content, title="index")
 
 @app.get("/<path:subpath>")
 def read(subpath=""):
@@ -52,11 +53,13 @@ def read(subpath=""):
         if os.path.exists(subpath):
             return send_file(subpath)
         else:
-            return make_response("file not found", 404)
+            response = render_template("base.html", content=not_found, title="markdown-server")
+            return make_response(response, 404)
 
-    return render_template("base.html", content=text, title="MarkdownViewer")
+    return render_template("base.html", content=text, title="markdown-server")
 
 def readFile(path):
+    path = path.replace("+", " ")
     if not os.path.exists(path):
         return not_found
     with open(path, "r", encoding="utf-8") as file:
@@ -68,7 +71,9 @@ def getAllMarkdownFiles(path="."):
     for root, dirs, files in os.walk(path):
         for file in files:
             if file.endswith('.md'):
-                markdown_files.append(os.path.join(root, file))
+                filePath = os.path.join(root, file)
+                filePath = filePath.replace(" ", "+")
+                markdown_files.append(filePath)
     return markdown_files
 
 def main():
