@@ -1,15 +1,10 @@
 # Markdown Server
-
 A simple server for rendering Markdown files.
 
 ## Installation
-<!-- 
-```bash
-pip install markdown-server
-``` -->
+See development setup for global system install.
 
 ## Usage
-
 ```bash
 cd <your dir>
 markdown-server
@@ -32,10 +27,7 @@ markdown-server
 ## Limitations
 Since URL's can't contain spaces we replace them with `+`. If your path contains the symbol `+` it won't work. So don't do that.
 
-## Development
-
-### Setup
-
+## Development Setup
 1. Clone this repository
 2. Install dependencies: `pip install -e .`
 3. Run the development server: `markdown-server`
