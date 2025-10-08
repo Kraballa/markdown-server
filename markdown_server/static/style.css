@@ -1,16 +1,18 @@
 :root {
-    background-color: light-dark(white, #101014);
-    color: light-dark(black, rgb(206, 206, 206));
+    background-color: light-dark(#fbf1c7, #282828);
+    color: light-dark(#3c3836, #ebdbb2);
+
+    color-scheme: light dark;
 }
 
 body {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: 'Sergoe UI', -apple-system, sans-serif;
     margin: 0;
 }
 
 div.content {
     margin: auto;
-    max-width: 600px;
+    max-width: 700px;
     padding: 0 5px;
 }
 
@@ -57,6 +59,24 @@ ol {
     /* margin: 0.3em 0 0.3em 0; */
 }
 
+a {
+    color: light-dark(#076678, #458588);
+}
+
+a:visited {
+    color: light-dark(#8f3f71, #b16286);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0.5em 0 0 0;
+    color: light-dark(#d79921, #d79921);
+}
+
 /* you can't style disabled checkboxes so we have to do this hack */
 input[type=checkbox] {
     pointer-events: none;
@@ -70,6 +90,10 @@ p {
     text-align: justify;
 }
 
+p, li {
+    line-height: 1.4em;
+}
+
 .header {
     padding: 4px 0 5px;
     border-bottom: 1px solid;
@@ -79,8 +103,8 @@ p {
     line-height: 1.5em;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     :root {
         color-scheme: dark;
     }
-}
+} */
