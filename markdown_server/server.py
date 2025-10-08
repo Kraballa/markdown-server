@@ -38,7 +38,7 @@ def root():
     paths = getAllMarkdownFiles()
     htmlChunks = ["<ul>"]
     for path in paths:
-        truncated = path[2:].replace("+", " ")
+        truncated = path[2:].replace("%20", " ")
         htmlChunks.append(f"<li><a href={path}>{truncated}</a></li>")
     htmlChunks.append("</ul>")
     content = Markup(''.join(htmlChunks))
@@ -59,7 +59,7 @@ def read(subpath=""):
     return render_template("base.html", content=text, title="markdown-server")
 
 def readFile(path):
-    path = path.replace("+", " ")
+    path = path.replace("%20", " ")
     if not os.path.exists(path):
         return not_found
     with open(path, "r", encoding="utf-8") as file:
@@ -72,7 +72,7 @@ def getAllMarkdownFiles(path="."):
         for file in files:
             if file.endswith('.md'):
                 filePath = os.path.join(root, file)
-                filePath = filePath.replace(" ", "+")
+                filePath = filePath.replace(" ", "%20")
                 markdown_files.append(filePath)
     return markdown_files
 
