@@ -35,13 +35,7 @@ index = Markup(md.render("<h3>Index</h3><p>This is a basic index file, to be rep
 
 @app.get("/")
 def root():
-    paths = getAllMarkdownFiles()
-    htmlChunks = ["<ul>"]
-    for path in paths:
-        truncated = path[2:].replace("%20", " ")
-        htmlChunks.append(f"<li><a href={path}>{truncated}</a></li>")
-    htmlChunks.append("</ul>")
-    content = Markup(''.join(htmlChunks))
+    content = buildFileTree()
     return render_template("base.html", content=content, title="index")
 
 @app.get("/<path:subpath>")
@@ -66,7 +60,7 @@ def readFile(path):
         text = file.read()
     return Markup(md.render(text))
 
-def getAllMarkdownFiles(path="."):
+def buildFileTree(path="."):
     markdown_files = []
     for root, dirs, files in os.walk(path):
         for file in files:
@@ -74,7 +68,14 @@ def getAllMarkdownFiles(path="."):
                 filePath = os.path.join(root, file)
                 filePath = filePath.replace(" ", "%20")
                 markdown_files.append(filePath)
-    return markdown_files
+
+    htmlChunks = ["<ul>"]
+    for file in markdown_files:
+        truncated = file[2:].replace("%20", " ")
+        htmlChunks.append(f"<li><a href={file}>{truncated}</a></li>")
+    htmlChunks.append("</ul>")
+    return Markup(''.join(htmlChunks))
+    
 
 def main():
     print("markdown server is running...")
