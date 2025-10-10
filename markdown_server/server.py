@@ -30,13 +30,15 @@ tasklists_plugin(md, enabled=True) # need to enable checkboxes so we can style t
 
 app = Flask(__name__)
 
-not_found = Markup(md.render("<h3>file not found</h3><p>the file couldn't be found</p>"))
+notFound = Markup(md.render("<h3>file not found</h3><p>the file couldn't be found</p>"))
 index = Markup(md.render("<h3>Index</h3><p>This is a basic index file, to be replaced...</p>"))
+
+parentFolder = os.path.basename(os.getcwd())
 
 @app.get("/")
 def root():
     content = buildFileTree()
-    return render_template("base.html", content=content, title="index")
+    return render_template("base.html", content=content, title=parentFolder)
 
 @app.get("/<path:subpath>")
 def read(subpath=""):
@@ -47,15 +49,15 @@ def read(subpath=""):
         if os.path.exists(subpath):
             return send_file(subpath)
         else:
-            response = render_template("base.html", content=not_found, title="markdown-server")
+            response = render_template("base.html", content=notFound, title=getTitle(subpath))
             return make_response(response, 404)
 
-    return render_template("base.html", content=text, title="markdown-server")
+    return render_template("base.html", content=text, title=getTitle(subpath))
 
 def readFile(path):
     path = path.replace("%20", " ")
     if not os.path.exists(path):
-        return not_found
+        return notFound
     with open(path, "r", encoding="utf-8") as file:
         text = file.read()
     return Markup(md.render(text))
@@ -76,6 +78,9 @@ def buildFileTree(path="."):
     htmlChunks.append("</ul>")
     return Markup(''.join(htmlChunks))
     
+def getTitle(subpath):
+    fileNoExt = os.path.splitext(os.path.basename(subpath))[0]
+    return parentFolder + " - " + fileNoExt
 
 def main():
     print("markdown server is running...")
