@@ -94,6 +94,17 @@ p, li {
     line-height: 1.4em;
 }
 
+blockquote {
+    margin: 0;
+    padding: 0 0 0 12px;
+    border-radius: 3px;
+    border-left: 3px solid light-dark(#3c3836, #ebdbb2);
+}
+
+hr {
+    border: 1px solid light-dark(#3c3836, #ebdbb2);
+}
+
 .header {
     padding: 4px 0 5px;
     border-bottom: 1px solid;

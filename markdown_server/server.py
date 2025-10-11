@@ -42,12 +42,12 @@ def root():
 
 @app.get("/<path:subpath>")
 def read(subpath=""):
-    subpath = "./" + subpath
     if subpath.endswith(".md"):
         text = readFile(subpath)
     else:
-        if os.path.exists(subpath):
-            return send_file(subpath)
+        actualPath = os.path.join(os.getcwd(), subpath)
+        if os.path.exists(actualPath):
+            return send_file(actualPath)
         else:
             response = render_template("base.html", content=notFound, title=getTitle(subpath))
             return make_response(response, 404)
